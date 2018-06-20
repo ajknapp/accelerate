@@ -327,13 +327,30 @@ Library
         Data.Array.Accelerate.Array.Sugar
         Data.Array.Accelerate.Array.Unique
         Data.Array.Accelerate.Async
+        Data.Array.Accelerate.Classes
         Data.Array.Accelerate.Debug
+        Data.Array.Accelerate.Debug.Flags
+        Data.Array.Accelerate.Debug.Monitoring
+        Data.Array.Accelerate.Debug.Stats
+        Data.Array.Accelerate.Debug.Timed
+        Data.Array.Accelerate.Debug.Trace
         Data.Array.Accelerate.Error
+        Data.Array.Accelerate.Language
         Data.Array.Accelerate.Lifetime
         Data.Array.Accelerate.Pretty
+        Data.Array.Accelerate.Prelude
         Data.Array.Accelerate.Product
         Data.Array.Accelerate.Smart
         Data.Array.Accelerate.Trafo
+        Data.Array.Accelerate.Trafo.Algebra
+        Data.Array.Accelerate.Trafo.Base
+        Data.Array.Accelerate.Trafo.Fusion
+        Data.Array.Accelerate.Trafo.Normalise
+        Data.Array.Accelerate.Trafo.Rewrite
+        Data.Array.Accelerate.Trafo.Sharing
+        Data.Array.Accelerate.Trafo.Shrink
+        Data.Array.Accelerate.Trafo.Simplify
+        Data.Array.Accelerate.Trafo.Substitution
         Data.Array.Accelerate.Type
 
         -- For testing
@@ -345,7 +362,6 @@ Library
         Data.Array.Accelerate.Analysis.Hash.TH
         Data.Array.Accelerate.Array.Lifted
         Data.Array.Accelerate.Array.Remote.Nursery
-        Data.Array.Accelerate.Classes
         Data.Array.Accelerate.Classes.Bounded
         Data.Array.Accelerate.Classes.Enum
         Data.Array.Accelerate.Classes.Eq
@@ -359,26 +375,11 @@ Library
         Data.Array.Accelerate.Classes.RealFloat
         Data.Array.Accelerate.Classes.RealFrac
         Data.Array.Accelerate.Classes.ToFloating
-        Data.Array.Accelerate.Debug.Flags
-        Data.Array.Accelerate.Debug.Monitoring
-        Data.Array.Accelerate.Debug.Stats
-        Data.Array.Accelerate.Debug.Timed
-        Data.Array.Accelerate.Debug.Trace
-        Data.Array.Accelerate.Language
         Data.Array.Accelerate.Lift
-        Data.Array.Accelerate.Prelude
         Data.Array.Accelerate.Pretty.Graphviz
         Data.Array.Accelerate.Pretty.Graphviz.Monad
         Data.Array.Accelerate.Pretty.Graphviz.Type
         Data.Array.Accelerate.Pretty.Print
-        Data.Array.Accelerate.Trafo.Algebra
-        Data.Array.Accelerate.Trafo.Base
-        Data.Array.Accelerate.Trafo.Fusion
-        Data.Array.Accelerate.Trafo.Rewrite
-        Data.Array.Accelerate.Trafo.Sharing
-        Data.Array.Accelerate.Trafo.Shrink
-        Data.Array.Accelerate.Trafo.Simplify
-        Data.Array.Accelerate.Trafo.Substitution
         -- Data.Array.Accelerate.Trafo.Vectorise
 
         -- nofib test suite

@@ -27,6 +27,7 @@ module Data.Array.Accelerate.Trafo (
   -- ** Array functions
   Afunction, AfunctionR,
   convertAfun, convertAfunWith,
+  convertFun, convertExp,
 
   -- ** Sequence computations
   -- convertSeq, convertSeqWith,

@@ -48,6 +48,7 @@ module Data.Array.Accelerate.Interpreter (
   -- Internal (hidden)
   evalPrj,
   evalPrim, evalPrimConst, evalUndef, evalCoerce,
+  evalAfun
 
 ) where
 
@@ -115,11 +116,11 @@ runN f = go
                 D.dumpGraph $!! acc
                 D.dumpSimplStats
                 return acc
-    !go     = eval afun Empty
-    --
-    eval :: DelayedOpenAfun aenv f -> Val aenv -> f
-    eval (Alam f)  aenv = \a -> eval f (aenv `Push` a)
-    eval (Abody b) aenv = unsafePerformIO $ phase "execute" D.elapsed (evaluate (evalOpenAcc b aenv))
+    !go     = evalAfun afun Empty
+
+evalAfun :: DelayedOpenAfun aenv f -> Val aenv -> f
+evalAfun (Alam f)  aenv = \a -> evalAfun f (aenv `Push` a)
+evalAfun (Abody b) aenv = unsafePerformIO $ phase "execute" D.elapsed (evaluate (evalOpenAcc b aenv))
 
 
 -- -- | Stream a lazily read list of input arrays through the given program,

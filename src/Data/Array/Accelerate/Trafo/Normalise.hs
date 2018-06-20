@@ -17,6 +17,7 @@ module Data.Array.Accelerate.Trafo.Normalise (
 
 import Prelude                                          hiding ( exp )
 import Data.Array.Accelerate.AST
+import Data.Array.Accelerate.Array.Sugar
 import Data.Array.Accelerate.Product
 import Data.Array.Accelerate.Trafo.Substitution
 
@@ -34,25 +35,25 @@ import Data.Array.Accelerate.Trafo.Substitution
 --   let x = e2
 --   in e3
 --
-anormalise :: PreOpenExp acc env aenv t -> PreOpenExp acc env aenv t
+anormalise :: PreOpenExp OpenAcc env aenv t -> PreOpenExp OpenAcc env aenv t
 anormalise = cvt
   where
     split1 :: Idx (env, a) t -> Idx ((env, s), a) t
     split1 ZeroIdx      = ZeroIdx
     split1 (SuccIdx ix) = SuccIdx (SuccIdx ix)
 
-    cvtA :: acc aenv a -> acc aenv a
+    cvtA :: OpenAcc aenv a -> OpenAcc aenv a
     cvtA = id
 
-    cvtT :: Tuple (PreOpenExp acc env aenv) t -> Tuple (PreOpenExp acc env aenv) t
+    cvtT :: Tuple (PreOpenExp OpenAcc env aenv) t -> Tuple (PreOpenExp OpenAcc env aenv) t
     cvtT NilTup         = NilTup
     cvtT (SnocTup t e)  = cvtT t `SnocTup` cvt e
 
-    cvtF :: PreOpenFun acc env aenv f -> PreOpenFun acc env aenv f
+    cvtF :: PreOpenFun OpenAcc env aenv f -> PreOpenFun OpenAcc env aenv f
     cvtF (Body e)       = Body (cvt e)
     cvtF (Lam f)        = Lam (cvtF f)
 
-    cvt :: PreOpenExp acc env aenv e -> PreOpenExp acc env aenv e
+    cvt :: PreOpenExp OpenAcc env aenv e -> PreOpenExp OpenAcc env aenv e
     cvt exp =
       case exp of
         Let bnd body    ->
@@ -77,7 +78,7 @@ anormalise = cvt
         ToIndex sh ix           -> ToIndex (cvt sh) (cvt ix)
         FromIndex sh ix         -> FromIndex (cvt sh) (cvt ix)
         Cond p t e              -> Cond (cvt p) (cvt t) (cvt e)
-        Iterate n f x           -> Iterate n (cvt f) (cvt x)
+        -- Iterate n f x           -> Iterate n (cvt f) (cvt x)
         PrimConst c             -> PrimConst c
         PrimApp f x             -> PrimApp f (cvt x)
         Index a sh              -> Index (cvtA a) (cvt sh)
